@@ -1,11 +1,11 @@
+const mongoose = require("mongoose");
 const express = require('express');
-const objectId = require("mongodb").ObjectId;
-
+const Schema = mongoose.Schema;
 const app = express();
 const jsonParser = express.json();
 
-let dbClient;
-
+const userScheme = new Schema({name: String, age: Number, height: Number, weight: Number}, {versionKey: false});
+const User = mongoose.model("User", userScheme);
 app.use(express.static(__dirname + "/public"));
 
 

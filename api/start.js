@@ -1,12 +1,9 @@
 const app = require('./server.js');
-const MongoClient = require("mongodb").MongoClient;
-const mongoClient = new MongoClient("mongodb://localhost:27017/", { useUnifiedTopology: true});
+const mongoose = require("mongoose");
 
-mongoClient.connect(function(err, client){
-	if(err) return console.log(err);
-	dbClient = client;
-	app.locals.collection = client.db("usersdb").collection("users");
-	app.listen(3000, function(){
-		console.log("Server expects a connection...");
-	});
+mongoose.connect("mongodb://localhost:27017/usersdb", function(err){
+		if(err) return console.log(err);
+		app.listen(3000, function(){
+			console.log("Сервер очікує підключення...");
+		});
 });
